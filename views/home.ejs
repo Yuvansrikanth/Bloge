@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') %>
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include('./partials/nav') %>
+    <style>
+      .card-title,
+      .card-text {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      /* Base styles for the wave-card */
+      .wave-card {
+        position: relative;
+        border-radius: 0.75rem; /* Rounded corners */
+        overflow: hidden; /* Prevents wave from overflowing */
+        transition: transform 0.2s ease-in-out; /* Smooth scaling */
+      }
+
+      /* Enlarge the wave-card on hover */
+      .wave-card:hover {
+        transform: scale(1.05); /* Zoom effect */
+      }
+
+      /* Wave effect applied to the wave div */
+      .wave {
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Wave pseudo-element */
+      .wave::before {
+        content: "";
+        position: absolute;
+        top: 100%; /* Starts off-screen */
+        left: -25%;
+        width: 150%;
+        height: 150%;
+        background: rgba(128, 128, 129, 0.2); /* Semi-transparent blue */
+        border-radius: 50%; /* Wave-like shape */
+        transition: top 0.2s ease-in-out; /* Smooth transition */
+        z-index: 0;
+      }
+
+      /* Trigger wave effect on hover */
+      .wave-card:hover .wave::before {
+        top: -25%; /* Bring wave into view */
+      }
+
+      /* Ensure the content inside wave is above the pseudo-element */
+      .wave h5,
+      .wave p {
+        position: relative;
+        z-index: 1;
+      }
+    </style>
+    <div class="container mt-3">
+      <div class="row">
+        <% blogs.forEach(blog => { %>
+        <div class="col-md-6 col-lg-4 mb-3">
+          <a
+            href="<%=`/blog/${blog._id}`%>"
+            style="text-decoration: none; color: inherit"
+          >
+            <div class="wave-card card" style="width: 100%">
+              <img
+                src="<%= blog.thumbnailURL %>"
+                class="card-img-top"
+                style="height: 20rem; object-fit: cover"
+                alt="Blog Thumbnail"
+              />
+              <div class="wave card-body">
+                <% if (blog.topics && blog.topics.length > 1) { %>
+                <div class="d-flex flex-wrap">
+                  <% blog.topics.slice(0, -1).forEach(topic => { %>
+                  <span class="badge rounded-pill bg-secondary m-1"><%= topic %></span>
+                  <% }) %>
+                </div>
+                <% } %>
+                <h5 class="card-title"><%= blog.title %></h5>
+                <p class="card-text"><%= blog.body %></p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+    <%- include('./partials/scripts') %>
+    <script src="/services/huggingface.js"></script>
+  </body>
+</html>

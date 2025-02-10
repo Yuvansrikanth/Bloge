@@ -1,0 +1,66 @@
+.custom-container {
+max-width: 95%;
+padding-left: 15px;
+padding-right: 15px;
+margin: 0 auto;
+}
+.card-title,
+.card-text {
+display: -webkit-box;
+-webkit-line-clamp: 1;
+line-clamp: 1;
+-webkit-box-orient: vertical;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+.card-text {
+-webkit-line-clamp: 2;
+line-clamp: 2;
+}
+.img-hover {
+transition: transform 0.3s ease;
+}
+.img-hover:hover {
+transform: scale(1.1);
+}
+.small-link {
+font-size: 1rem; /* Reduce font size */
+padding: 5px 10px; /* Adjust padding if needed */
+line-height: 1.2; /* Adjust line height */
+}
+
+.profile{
+    width: 200px; 
+    height: 200px; 
+    position: absolute;
+    border-radius: 50%;
+}
+@property --angle {
+    syntax: "<angle>";
+    inherits:true;
+    initial-value: 0deg;
+}
+.profile::after,
+.profile::before{
+    content: "";   
+    background-color: aquamarine;
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: inherit;
+    background-image: conic-gradient(
+        from var(--angle), rgba(255, 0, 225, 0.872), blue, rgba(255, 0, 225, 0.872)
+    );
+    animation: autoRotate 2s linear infinite;
+    z-index: -1;
+}
+.profile::after{
+    filter: blur(25px);
+    z-index: -2;
+}
+
+@keyframes autoRotate {
+    to {
+        --angle:360deg;
+    }
+}

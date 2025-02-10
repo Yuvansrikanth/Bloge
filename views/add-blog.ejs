@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') %>
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include('./partials/nav') %>
+    <div class="container mt-3">
+      <form action="/blog" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label for="coverImg" class="form-label"
+            >Upload cover image (Optional)</label
+          >
+          <input
+            class="form-control"
+            name="coverImg"
+            type="file"
+            id="coverImg"
+            accept="image/*"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input
+            type="title"
+            name="title"
+            class="form-control"
+            id="title"
+            placeholder="Enter yout title"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="body" class="form-label">Body</label>
+          <textarea
+            class="form-control"
+            name="body"
+            id="body"
+            rows="10"
+            required
+          ></textarea>
+        </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="btn btn-primary" type="submit">Post</button>
+        </div>
+      </form>
+    </div>
+    <%- include('./partials/scripts') %>
+  </body>
+</html>
