@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') %>
+    <title>Document</title>
+    <style>
+      /* Custom container with reduced side space */
+      .custom-container {
+        max-width: 95%; /* Adjust this value for your desired width */
+        padding-left: 15px; /* Smaller left padding */
+        padding-right: 15px; /* Smaller right padding */
+        margin: 0 auto; /* Center the container */
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('./partials/nav') %>
+    <div class="custom-container my-4">
+      <h1><%= blog.title %></h1>
+      <p>Last updated: <%= formattedDate %></p>
+      <%- include('./partials/blog-topics') %> <%-
+      include('./partials/blog-delete-option') %>
+      <div class="row mt-3">
+        <div class="col-12 col-md-9 p-3 rounded">
+          <div>
+            <img
+              class="rounded"
+              src="<%= blog.thumbnailURL %>"
+              style="width: 50vw"
+            />
+          </div>
+          <a
+            href="<%= `/user/profile/${blog.createdBy._id}` %>"
+            style="text-decoration: none; color: inherit"
+          >
+            <div style="display: inline-block; vertical-align: middle">
+              <img
+                class="mt-3 rounded-circle"
+                src="<%= blog.createdBy.profileImageURL %>"
+                style="width: 60px; vertical-align: middle"
+              />
+
+              <h5
+                style="
+                  display: inline-block;
+                  margin-left: 10px;
+                  margin-top: 20px;
+                  vertical-align: middle;
+                "
+              >
+                <%= blog.createdBy.fullName %>
+              </h5>
+            </div>
+          </a>
+          <pre class="mt-3" style="white-space: pre-wrap">
+ <%= blog.body %></pre
+          >
+        </div>
+        <div class="col-12 col-md-3 bg-secondary text-white p-3 rounded">
+          <h4>Related Blogs</h4>
+          <p>Content for the second column.</p>
+        </div>
+      </div>
+    </div>
+    <%- include('./partials/blog-comments.ejs') %> <%-
+    include('./partials/scripts') %>
+  </body>
+</html>

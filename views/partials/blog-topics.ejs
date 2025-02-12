@@ -1,0 +1,7 @@
+<% if (blog.topics && blog.topics.length > 1) { %>
+<div class="d-flex flex-wrap">
+  <% blog.topics.slice(0, -1).forEach(topic => { %>
+  <span class="badge rounded-pill bg-secondary m-1"><%= topic %></span>
+  <% }) %>
+</div>
+<% } %>

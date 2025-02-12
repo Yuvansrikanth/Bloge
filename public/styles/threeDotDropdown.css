@@ -1,0 +1,48 @@
+/* Container */
+.custom-dropdown {
+position: relative;
+display: inline-block;
+}
+
+/* Three Dots */
+.custom-dots {
+cursor: pointer;
+width: 24px;
+display: flex;
+justify-content: space-between;
+flex-direction: column;
+}
+.custom-dots span {
+display: block;
+width: 6px;
+height: 6px;
+background-color: rgba(49, 49, 49, 0.8);
+border-radius: 50%;
+}
+
+/* Dropdown Menu */
+.custom-menu {
+position: absolute;
+top: 30px;
+right: 0;
+background: white;
+border: 1px solid #ddd;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+border-radius: 4px;
+display: none;
+z-index: 10;
+}
+.custom-menu a {
+display: block;
+padding: 8px 16px;
+color: #333;
+text-decoration: none;
+}
+.custom-menu a:hover {
+background-color: #f1f1f1;
+}
+
+/* Show Menu on Active */
+.custom-dropdown.active .custom-menu {
+display: block;
+}
